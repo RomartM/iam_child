@@ -1,3 +1,5 @@
+from frappe import _
+
 app_name = "iam_child"
 app_title = "Iam Child"
 app_publisher = "Kid Mediante"
@@ -42,7 +44,7 @@ app_license = "mit"
 # ----------
 
 # application home page (will override Website Settings)
-# home_page = "login"
+# home_page = "index"
 
 # website user home page (by Role)
 # role_home_page = {
@@ -159,9 +161,10 @@ app_license = "mit"
 # Overriding Methods
 # ------------------------------
 #
-# override_whitelisted_methods = {
-#	"frappe.desk.doctype.event.event.get_events": "iam_child.event.get_events"
-# }
+override_whitelisted_methods = {
+    "frappe.handler.logout": "iam_child.handler.logout",
+    "frappe.handler.web_logout": "iam_child.handler.web_logout"
+}
 #
 # each overriding function accepts a `data` argument;
 # generated from the base implementation of the doctype dashboard,
@@ -181,8 +184,8 @@ app_license = "mit"
 
 # Request Events
 # ----------------
-# before_request = ["iam_child.utils.before_request"]
-# after_request = ["iam_child.utils.after_request"]
+before_request = ["iam_child.utils.before_request"]
+after_request = ["iam_child.utils.after_request"]
 
 # Job Events
 # ----------
@@ -216,6 +219,17 @@ app_license = "mit"
 # Authentication and authorization
 # --------------------------------
 
-# auth_hooks = [
-#	"iam_child.auth.validate"
-# ]
+auth_hooks = [
+	"iam_child.auth.validate"
+]
+
+website_context = {
+    "post_login": [
+        {"label": _("My Account"), "url": "https://iam.buksu.edu.ph/dashboard"},
+        {"label": _("Log out"), "url": "/?cmd=web_logout"},
+    ],
+}
+
+fixtures = ["Custom Field"]
+
+on_logout = "iam_child.callbacks.user.on_logout"
