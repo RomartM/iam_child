@@ -19,6 +19,7 @@ no_cache = True
 
 def get_context(context):
     redirect_to = frappe.local.request.args.get("redirect-to")
+    _iam_settings = frappe.get_single("IAM Settings")
 
     if frappe.session.user != "Guest":
         if not redirect_to:
@@ -31,13 +32,24 @@ def get_context(context):
             frappe.local.flags.redirect_location = redirect_to
             raise frappe.Redirect
 
+    query_string = str(frappe.request.query_string)
+    auto_login = _iam_settings.auto_login
+    disable_user_pass_login = cint(frappe.get_system_settings("disable_user_pass_login")) or cint(_iam_settings.disable_login)
+
+    if 'show_login' in query_string:
+        disable_user_pass_login = False
+
+    if 'no_auto_login' in query_string:
+        auto_login = False
+
     context.no_header = True
     context.for_test = "login.html"
     context["title"] = "Login"
+    context["auto_login"] = auto_login
     context["hide_login"] = True  # dont show login link on login page again.
     context["provider_logins"] = []
     context["disable_signup"] = cint(frappe.get_website_settings("disable_signup"))
-    context["disable_user_pass_login"] = cint(frappe.get_system_settings("disable_user_pass_login"))
+    context["disable_user_pass_login"] = disable_user_pass_login
     context["logo"] = frappe.get_website_settings("app_logo") or frappe.get_hooks("app_logo_url")[-1]
     context["app_name"] = (
             frappe.get_website_settings("app_name") or frappe.get_system_settings("app_name") or _("Frappe")

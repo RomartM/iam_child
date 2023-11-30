@@ -1,0 +1,42 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2023-11-24 14:24:10.620823",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "smart_system",
+  "units"
+ ],
+ "fields": [
+  {
+   "fieldname": "smart_system",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Smart System",
+   "options": "Smart System",
+   "reqd": 1
+  },
+  {
+   "fieldname": "units",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Units",
+   "options": "Unit",
+   "reqd": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2023-11-24 14:26:16.965199",
+ "modified_by": "Administrator",
+ "module": "Iam Child",
+ "name": "Smart System Role Item",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

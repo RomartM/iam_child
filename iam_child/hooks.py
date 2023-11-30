@@ -13,7 +13,7 @@ app_license = "mit"
 
 # include js, css files in header of desk.html
 # app_include_css = "/assets/iam_child/css/iam_child.css"
-# app_include_js = "/assets/iam_child/js/iam_child.js"
+app_include_js = "/assets/iam_child/js/iam_child.js"
 
 # include js, css files in header of web template
 # web_include_css = "/assets/iam_child/css/iam_child.css"
@@ -162,8 +162,8 @@ app_license = "mit"
 # ------------------------------
 #
 override_whitelisted_methods = {
-    "frappe.handler.logout": "iam_child.handler.logout",
-    "frappe.handler.web_logout": "iam_child.handler.web_logout"
+    "logout": "iam_child.handler.logout_mod",
+    "web_logout": "iam_child.handler.web_logout_mod"
 }
 #
 # each overriding function accepts a `data` argument;

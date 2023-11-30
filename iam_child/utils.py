@@ -1,9 +1,15 @@
-from frappe.frappeclient import FrappeClient
-
-
 def before_request():
-    print('Check if currently login to iam')
+    pass
+    # print('Check if currently login to iam')
 
 
 def after_request(response, request):
-    print('Check if currently login to iam [AFTER]')
+    pass
+    # print(response)
+    # print(dir(request))
+    # query_string = str(request.query_string)
+    # print(query_string.find('cmd=web_logout'))
+    # validate()
+    # if not query_string.find('cmd=web_logout'):
+    #     print('LLLLLLLLL')
+    #     validate()

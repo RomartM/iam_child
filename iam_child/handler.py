@@ -1,16 +1,18 @@
 import frappe
-from iam.callbacks.user import on_logout
 
 
 @frappe.whitelist(allow_guest=True)
-def logout():
+def logout_mod():
     frappe.local.login_manager.logout()
     frappe.db.commit()
-    on_logout()
 
 
 @frappe.whitelist(allow_guest=True)
-def web_logout():
+def web_logout_mod():
+    redirect_to = frappe.local.request.args.get("redirect-to")
+
     frappe.local.login_manager.logout()
     frappe.db.commit()
-    on_logout()
+
+    frappe.local.response["type"] = "redirect"
+    frappe.local.response["location"] = redirect_to

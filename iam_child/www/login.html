@@ -293,16 +293,17 @@
 
 {% block script %}
     <script>{% include "templates/includes/login/login.js" %}</script>
+    {% if auto_login %}
     <script>
         const oidc_provider_nodes = Array.from(document.querySelectorAll(".oidc-provider"));
         const action_url = oidc_provider_nodes[0]?.getAttribute("href");
         if(action_url){
-            console.log(action_url)
             location.href = action_url;
         }else{
             alert('Please contact the administrator; currently no active login provider')
         }
     </script>
+    {% endif %}
 {% endblock %}
 
 {% block sidebar %}{% endblock %}

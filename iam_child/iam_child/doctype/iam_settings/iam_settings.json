@@ -1,0 +1,62 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2023-11-24 09:28:15.396102",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "iam_system_identification_section",
+  "system_name_identity",
+  "auto_login",
+  "disable_login"
+ ],
+ "fields": [
+  {
+   "fieldname": "iam_system_identification_section",
+   "fieldtype": "Section Break",
+   "label": "IAM System Identification"
+  },
+  {
+   "fieldname": "system_name_identity",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "System Name Identity",
+   "reqd": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "auto_login",
+   "fieldtype": "Check",
+   "label": "Auto Login"
+  },
+  {
+   "default": "0",
+   "fieldname": "disable_login",
+   "fieldtype": "Check",
+   "label": "Disable Login"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "issingle": 1,
+ "links": [],
+ "modified": "2023-11-24 09:50:32.239492",
+ "modified_by": "Administrator",
+ "module": "Iam Child",
+ "name": "IAM Settings",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
